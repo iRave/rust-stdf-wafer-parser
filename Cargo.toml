@@ -1,0 +1,29 @@
+[package]
+name = "stdf-wafer-parser"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <till.busse@protonmail.com>"]
+description = "A high-performance STDF (Standard Test Data Format) parser for semiconductor wafer test data"
+license = "MIT"
+repository = "https://github.com/iRave/rust-stdf-wafer-parser"
+keywords = ["stdf", "semiconductor", "wafer", "parser", "test-data"]
+categories = ["parsing", "science"]
+
+[lib]
+name = "stdf_wafer_parser"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+pyo3 = { version = "0.20", features = ["extension-module"] }
+polars = { version = "0.35", features = ["lazy", "dtype-full"] }
+byteorder = "1.5"
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+
+[dev-dependencies]
+tempfile = "3.8"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
